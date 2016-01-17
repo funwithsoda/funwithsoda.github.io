@@ -1,4 +1,61 @@
-"---\nlayout: post\ntitle: Create a detailed Socrata data catalog\ndescription: \"Instructions for creating a catalog of Socrata datasets with a lot of detail.\"\nmodified: 2016-01-17\ncategories: [data catalog]\n---\n\nSocrata provides a API for getting a list of Socrata datasets. Unfortunately for me the data provided is not as comprehensive as I'd like. For example it doesn't list the number of rows, location of data owner, creation date, and number of updates.\n\n\n\n"
+"---\nlayout: post\ntitle: Create a detailed Socrata data catalog\ndescription: \"Instructions for creating a catalog of Socrata datasets with a lot of detail.\"\nmodified: 2016-01-17\ncategories: [data catalog]\n---\n\nSocrata provides a API for getting a list of Socrata datasets. Unfortunately for me the data is not as comprehensive as I'd like. For example it doesn't list the ID for SODA 2.1, number of rows, location of data owner, creation date, and number of updates.\n\n# Basic steps\n\n1. Download the list of datasets\n2. Get the 2.1 SODA ID for each dataset\n3. Get the location of each dataset owner\n4. Run Count(*) on each dataset \n\n\n\n\n\n"
+{"patch":[[[[0,"h datase"],[-1,"t "],[0,"\n\n\n\n\n\n"]],619,619,16,14]],"time":1453070094127}
+{"patch":[[[[0,"*) on ea"],[-1,"ch datase"],[0,"\n\n\n\n\n\n"]],610,610,23,14]],"time":1453070092127}
+{"patch":[[[[0,"(*) "],[-1,"on ea"],[0,"\n\n\n\n"]],609,609,13,8]],"time":1453070090127}
+{"patch":[[[[0,"Coun"],[-1,"t(*) "],[0,"\n\n\n\n"]],604,604,13,8]],"time":1453070088127}
+{"patch":[[[[0,"4. R"],[-1,"un Coun"],[0,"\n\n\n\n"]],597,597,15,8]],"time":1453070086127}
+{"patch":[[[[0,"\n4. "],[-1,"R"],[0,"\n\n\n\n"]],596,596,9,8]],"time":1453070084172}
+{"patch":[[[[0," owner\n4"],[-1,". "],[0,"\n\n\n\n\n\n"]],590,590,16,14]],"time":1453070003138}
+{"patch":[[[[0,"ner\n"],[-1,"4"],[0,"\n\n\n\n"]],593,593,9,8]],"time":1453070001179}
+{"patch":[[[[0," owner\n\n\n\n\n\n"],[-1,"\n"]],590,590,13,12]],"time":1453069969517}
+{"patch":[[[[0," dataset"],[-1," owner"],[0,"\n\n\n\n\n\n"]],582,582,20,14]],"time":1453069967518}
+{"patch":[[[[0,"n of eac"],[-1,"h dataset"],[0,"\n\n\n\n\n\n"]],573,573,23,14]],"time":1453069965519}
+{"patch":[[[[0,"e lo"],[-1,"cation of eac"],[0,"\n\n\n\n"]],564,564,21,8]],"time":1453069963517}
+{"patch":[[[[0,"Get the "],[-1,"lo"],[1,"geo location of the"],[0,"\n\n\n\n\n\n"]],558,558,16,33]],"time":1453069961516}
+{"patch":[[[[0,"n of the"],[1," "],[0,"\n\n\n\n\n\n"]],577,577,14,15]],"time":1453069959515}
+{"patch":[[[[0,"on o"],[-1,"f the "],[0,"\n\n\n\n"]],576,576,14,8]],"time":1453069954492}
+{"patch":[[[[0,"ocation "],[-1,"o"],[0,"\n\n\n\n\n\n"]],571,571,15,14]],"time":1453069952493}
+{"patch":[[[[0,"the "],[-1,"geo "],[0,"loca"]],562,562,12,8]],"time":1453069950317}
+{"patch":[[[[0,"e locati"],[-1,"on "],[0,"\n\n\n\n\n\n"]],564,564,17,14]],"time":1453069948318}
+{"patch":[[[[0,"Get the "],[-1,"locati"],[0,"\n\n\n\n\n\n"]],558,558,20,14]],"time":1453069946340}
+{"patch":[[[[0,"set\n3. G"],[-1,"et the "],[0,"\n\n\n\n\n\n"]],551,551,21,14]],"time":1453069944316}
+{"patch":[[[[0,"aset\n3. "],[-1,"G"],[0,"\n\n\n\n\n\n"]],550,550,15,14]],"time":1453069942317}
+{"patch":[[[[0," dataset"],[1,"s"],[0,"\n3. \n\n\n\n"]],546,546,16,17]],"time":1453069938315}
+{"patch":[[[[0,"each dat"],[-1,"asets"],[0,"\n3. \n\n\n\n"]],542,542,21,16]],"time":1453069936314}
+{"patch":[[[[0," ID "],[-1,"for each dat"],[0,"\n3. "]],534,534,20,8]],"time":1453069934313}
+{"patch":[[[[0," SODA ID"],[-1," "],[0,"\n3. \n\n\n\n"]],529,529,17,16]],"time":1453069932319}
+{"patch":[[[[0,"ODA ID\n3"],[-1,". "],[0,"\n\n\n\n\n\n"]],531,531,16,14]],"time":1453069879577}
+{"patch":[[[[0," ID\n"],[-1,"3"],[0,"\n\n\n\n"]],534,534,9,8]],"time":1453069877582}
+{"patch":[[[[0,"ODA "],[-1,"ID\n"],[0,"\n\n\n\n"]],531,531,11,8]],"time":1453069873950}
+{"patch":[[[[0,"Get the "],[1," "],[0,"2.1 SODA"]],518,518,16,17]],"time":1453069871949}
+{"patch":[[[[0,"Get the "],[1,"ID for the"],[0," 2.1 SOD"]],518,518,16,26]],"time":1453069869952}
+{"patch":[[[[0," 2.1 SOD"],[-1,"A "],[0,"\n\n\n\n\n\n"]],536,536,16,14]],"time":1453069860370}
+{"patch":[[[[0,"the "],[-1,"2.1 SOD"],[0,"\n\n\n\n"]],533,533,15,8]],"time":1453069858370}
+{"patch":[[[[0,"the "],[-1,"ID for the "],[0,"\n\n\n\n"]],522,522,19,8]],"time":1453069854370}
+{"patch":[[[[0,"s\n2. Get"],[-1," the "],[0,"\n\n\n\n\n\n"]],513,513,19,14]],"time":1453069852371}
+{"patch":[[[[0,"ts\n2"],[-1,". Get"],[0,"\n\n\n\n"]],512,512,13,8]],"time":1453069850371}
+{"patch":[[[[0,"atasets\n"],[-1,"2"],[0,"\n\n\n\n\n\n"]],507,507,15,14]],"time":1453069848373}
+{"patch":[[[[0,"tasets\n\n\n\n\n\n"],[-1,"\n"]],508,508,13,12]],"time":1453069846371}
+{"patch":[[[[0,"list of "],[-1,"datasets"],[0,"\n\n\n\n\n\n"]],498,498,22,14]],"time":1453069840707}
+{"patch":[[[[0,"oad the "],[-1,"list of "],[0,"\n\n\n\n\n\n"]],490,490,22,14]],"time":1453069838705}
+{"patch":[[[[0,"1. D"],[-1,"ownload the "],[0,"\n\n\n\n"]],482,482,20,8]],"time":1453069836705}
+{"patch":[[[[0,"eps\n\n1. "],[-1,"D"],[0,"\n\n\n\n\n\n"]],477,477,15,14]],"time":1453069834706}
+{"patch":[[[[0,"steps\n\n1"],[-1,". "],[0,"\n\n\n\n\n\n"]],475,475,16,14]],"time":1453069831527}
+{"patch":[[[[0," steps\n\n"],[-1,"1"],[0,"\n\n\n\n\n\n"]],474,474,15,14]],"time":1453069829568}
+{"patch":[[[[0,"steps\n\n\n\n\n\n\n"],[-1,"\n"]],475,475,13,12]],"time":1453069786219}
+{"patch":[[[[0," steps\n\n\n\n\n\n"],[-1,"\n"]],474,474,13,12]],"time":1453069784255}
+{"patch":[[[[0,"ic s"],[-1,"teps"],[0,"\n\n\n\n"]],472,472,12,8]],"time":1453069781706}
+{"patch":[[[[0,".\n\n#"],[-1," Basic s"],[0,"\n\n\n\n"]],464,464,16,8]],"time":1453069779706}
+{"patch":[[[[0,"s.\n\n"],[-1,"#"],[0,"\n\n\n\n"]],463,463,9,8]],"time":1453069777710}
+{"patch":[[[[0,"ates.\n\n\n\n\n\n\n"],[-1,"\n"]],460,460,13,12]],"time":1453069419044}
+{"patch":[[[[0,"dates.\n\n\n\n\n\n"],[-1,"\n"]],459,459,13,12]],"time":1453069417048}
+{"patch":[[[[0,"SODA"],[-1," 2.1,"],[0," num"]],378,378,13,8]],"time":1453069334523}
+{"patch":[[[[0,"for "],[-1,"SODA "],[0,"numb"]],374,374,13,8]],"time":1453069332524}
+{"patch":[[[[0,"he I"],[-1,"D for "],[0,"numb"]],368,368,14,8]],"time":1453069330523}
+{"patch":[[[[0,"ist the "],[-1,"I"],[0,"number o"]],363,363,17,16]],"time":1453069328524}
+{"patch":[[[[0,"pdates.\n\n\n\n\n"],[-1,"\n"]],441,441,13,12]],"time":1453069322079}
+{"patch":[[[[0,"tes.\n\n\n\n"],[-1,"\n"]],444,444,9,8]],"time":1453069320119}
+{"patch":[[[[0,"he data "],[1,"provided "],[0,"is not a"]],294,294,16,25]],"time":1453069310304}
 {"patch":[[[[0,"6-01-17\n"],[1,"\n"],[0,"categori"]],169,169,16,17]],"time":1453069190724}
 {"patch":[[[[0,"16-01-17"],[1,"\nauthor: Tim Clemans"],[0,"\n\ncatego"]],168,168,16,36]],"time":1453069188724}
 {"patch":[[[[0,"Clemans\n"],[1,"tags: []"],[0,"\ncategor"]],189,189,16,24]],"time":1453069186724}
