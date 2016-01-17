@@ -75,6 +75,8 @@ highlighter: pygments
 markdown:    kramdown
 gems:
   - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-gist
 sass:
   sass_dir: _sass
   style: compressed
