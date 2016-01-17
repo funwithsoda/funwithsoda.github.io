@@ -35,15 +35,15 @@ menu:
 
 # Owner/author information
 owner:
-  name:           Your name
+  name:           Tim Clemans
   site:           http://aronbordin.com
   avatar:         images/avatar.jpg
   bio:            "Your bio goes here. It shouldn't be super long but a good two sentences or two should suffice."
-  email:          you@email.com
+  email:          tim@insideyourgovernment.com
   # Social networking links used in footer. Update and remove as you like.
   twitter: funwithsoda # if no twitter in this config, the twitter follow button will be removed
-  facebook:
-  github: aron-bordin
+  facebook: 
+  github: funwithsoda
   stackexchange:
   linkedin:
   instagram:
@@ -55,10 +55,6 @@ owner:
 social:
   - title: "github"
     url: "https://github.com/funwithsoda"
-  - title: "linkedin"
-    url: "https://br.linkedin.com/in/aronbordin"
-  - title: "youtube"
-    url: "https://www.youtube.com/channel/UCfnSek-9HPWOx5e2pH7VFgg"
 # Background image to be tiled on all pages
 background:
 
