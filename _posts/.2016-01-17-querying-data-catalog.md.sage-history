@@ -1,4 +1,11 @@
-"---\nlayout: post\ntitle: Create a detailed Socrata datasets catalog\ndescription: \"Instructions for creating a catalog of Socrata datasets with a lot of detail.\"\nmodified: 2016-01-17\nauthor: Tim Clemans\ntags: [sample post]\ncategories: [data catalog]\n---\n\nSocrata provides a API for getting a list of Socrata datasets. Unfortunately for me the data provided is not as comprehensive as I'd like. For example it doesn't list the number of rows, location of data owner, creation date, and number of updates.\n\n\n\n"
+"---\nlayout: post\ntitle: Create a detailed Socrata data catalog\ndescription: \"Instructions for creating a catalog of Socrata datasets with a lot of detail.\"\nmodified: 2016-01-17\ncategories: [data catalog]\n---\n\nSocrata provides a API for getting a list of Socrata datasets. Unfortunately for me the data provided is not as comprehensive as I'd like. For example it doesn't list the number of rows, location of data owner, creation date, and number of updates.\n\n\n\n"
+{"patch":[[[[0,"6-01-17\n"],[1,"\n"],[0,"categori"]],169,169,16,17]],"time":1453069190724}
+{"patch":[[[[0,"16-01-17"],[1,"\nauthor: Tim Clemans"],[0,"\n\ncatego"]],168,168,16,36]],"time":1453069188724}
+{"patch":[[[[0,"Clemans\n"],[1,"tags: []"],[0,"\ncategor"]],189,189,16,24]],"time":1453069186724}
+{"patch":[[[[0,"\ntags: ["],[1,"s"],[0,"]\ncatego"]],196,196,16,17]],"time":1453069184763}
+{"patch":[[[[0,"tags: [s"],[1,"ample pos"],[0,"]\ncatego"]],197,197,16,25]],"time":1453069182724}
+{"patch":[[[[0,"mple pos"],[1,"t"],[0,"]\ncatego"]],206,206,16,17]],"time":1453069180725}
+{"patch":[[[[0,"Socrata data"],[1,"sets"],[0," catalog\ndes"]],42,42,24,28]],"time":1453069145951}
 {"patch":[[[[0,"ovides a"],[1,"n"],[0," API for"]],263,263,16,17]],"time":1453068903800}
 {"patch":[[[[0,"date"],[-1,"s.\n\n"],[0,"\n\n"]],496,496,10,6]],"time":1453068652751}
 {"patch":[[[[0,"umbe"],[-1,"r of update"],[0,"\n\n"]],485,485,17,6]],"time":1453068650737}
