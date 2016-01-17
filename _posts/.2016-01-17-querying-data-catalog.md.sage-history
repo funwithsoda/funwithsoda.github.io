@@ -1,4 +1,41 @@
-"---\nlayout: post\ntitle: Create a detailed Socrata datasets catalog\ndescription: \"Instructions for creating a catalog of Socrata datasets with a lot of detail.\"\nmodified: 2016-01-17\nauthor: Tim Clemans\ntags: [sample post]\ncategories: [data catalog]\n---\n\nSocrata provides an API for getting a list of Socrata datasets.\n\n"
+"---\nlayout: post\ntitle: Create a detailed Socrata datasets catalog\ndescription: \"Instructions for creating a catalog of Socrata datasets with a lot of detail.\"\nmodified: 2016-01-17\nauthor: Tim Clemans\ntags: [sample post]\ncategories: [data catalog]\n---\n\nSocrata provides a API for getting a list of Socrata datasets. Unfortunately for me the data provided is not as comprehensive as I'd like. For example it doesn't list the number of rows, location of data owner, creation date, and number of updates.\n\n\n\n"
+{"patch":[[[[0,"ovides a"],[1,"n"],[0," API for"]],263,263,16,17]],"time":1453068903800}
+{"patch":[[[[0,"date"],[-1,"s.\n\n"],[0,"\n\n"]],496,496,10,6]],"time":1453068652751}
+{"patch":[[[[0,"umbe"],[-1,"r of update"],[0,"\n\n"]],485,485,17,6]],"time":1453068650737}
+{"patch":[[[[0,"te, and "],[-1,"numbe"],[0,"\n\n"]],476,476,15,10]],"time":1453068648775}
+{"patch":[[[[0,"e, a"],[-1,"nd "],[0,"\n\n"]],477,477,9,6]],"time":1453068646738}
+{"patch":[[[[0,"n date, "],[-1,"a"],[0,"\n\n"]],472,472,11,10]],"time":1453068644775}
+{"patch":[[[[0,"n da"],[-1,"te, "],[0,"\n\n"]],472,472,10,6]],"time":1453068630219}
+{"patch":[[[[0,"r, c"],[-1,"reation da"],[0,"\n\n"]],462,462,16,6]],"time":1453068628219}
+{"patch":[[[[0," owner, "],[-1,"c"],[0,"\n\n"]],457,457,11,10]],"time":1453068626264}
+{"patch":[[[[0,"of d"],[-1,"ata owner, "],[0,"\n\n"]],450,450,17,6]],"time":1453068441671}
+{"patch":[[[[0,"tion of "],[-1,"d"],[0,"\n\n"]],445,445,11,10]],"time":1453068439711}
+{"patch":[[[[0,"ocation "],[-1,"of "],[0,"\n\n"]],442,442,13,10]],"time":1453068431930}
+{"patch":[[[[0,"s, l"],[-1,"ocation "],[0,"\n\n"]],438,438,14,6]],"time":1453068429928}
+{"patch":[[[[0,"f rows, "],[-1,"l"],[0,"\n\n"]],433,433,11,10]],"time":1453068427975}
+{"patch":[[[[0,"of rows,"],[-1," "],[0,"\n\n"]],432,432,11,10]],"time":1453068381496}
+{"patch":[[[[0,"rows"],[-1,","],[1," in "],[0,"\n\n"]],435,435,7,10]],"time":1453068379495}
+{"patch":[[[[0,"f ro"],[-1,"ws in "],[0,"\n\n"]],433,433,12,6]],"time":1453068377495}
+{"patch":[[[[0,"e nu"],[-1,"mber of ro"],[0,"\n\n"]],423,423,16,6]],"time":1453068375496}
+{"patch":[[[[0,"'t l"],[-1,"ist the nu"],[0,"\n\n"]],413,413,16,6]],"time":1453068373495}
+{"patch":[[[[0,"doesn't "],[-1,"l"],[0,"\n\n"]],408,408,11,10]],"time":1453068371540}
+{"patch":[[[[0,"ded is n"],[-1,"ot "],[0,"as compr"]],352,352,19,16]],"time":1453068315277}
+{"patch":[[[[0,"ided is "],[-1,"n"],[0,"as compr"]],351,351,17,16]],"time":1453068313225}
+{"patch":[[[[0,"fort"],[-1,"un"],[0,"a"],[1,"n"],[0,"tely"]],319,319,11,10]],"time":1453068267903}
+{"patch":[[[[0," it "],[-1,"doesn't "],[0,"\n\n"]],399,399,14,6]],"time":1453068232847}
+{"patch":[[[[0," exa"],[-1,"mple it "],[0,"\n\n"]],391,391,14,6]],"time":1453068230848}
+{"patch":[[[[0,"d li"],[-1,"ke. For exa"],[0,"\n\n"]],380,380,17,6]],"time":1453068228847}
+{"patch":[[[[0,"sive"],[-1," as I'd li"],[0,"\n\n"]],370,370,16,6]],"time":1453068226847}
+{"patch":[[[[0,"s as"],[-1," comprehensive"],[0,"\n\n"]],356,356,20,6]],"time":1453068224847}
+{"patch":[[[[0,"ded "],[-1,"is as"],[0,"\n\n"]],351,351,11,6]],"time":1453068222847}
+{"patch":[[[[0," dat"],[-1,"a provided "],[0,"\n\n"]],340,340,17,6]],"time":1453068220848}
+{"patch":[[[[0," me "],[-1,"the dat"],[0,"\n\n"]],333,333,13,6]],"time":1453068218848}
+{"patch":[[[[0,"ly f"],[-1,"or me "],[0,"\n\n"]],327,327,12,6]],"time":1453068216848}
+{"patch":[[[[0,"tantely "],[-1,"f"],[0,"\n\n"]],322,322,11,10]],"time":1453068214892}
+{"patch":[[[[0,"tant"],[-1,"ely "],[0,"\n\n"]],322,322,10,6]],"time":1453068132817}
+{"patch":[[[[0,"fort"],[-1,"ant"],[0,"\n\n"]],319,319,9,6]],"time":1453068130816}
+{"patch":[[[[0,"ts. "],[-1,"Unfort"],[0,"\n\n"]],313,313,12,6]],"time":1453068128817}
+{"patch":[[[[0,"atasets."],[-1," "],[0,"\n\n"]],308,308,11,10]],"time":1453068126821}
 {"patch":[[[[0,"atasets."],[1," "],[0,"\n\n"]],308,308,10,11]],"time":1453067322024}
 {"patch":[[[[0,"g a list"],[1,"in"],[0," of Socr"]],287,287,16,18]],"time":1453067286421}
 {"patch":[[[[0,"a listin"],[1,"g"],[0," of Socr"]],289,289,16,17]],"time":1453067284421}

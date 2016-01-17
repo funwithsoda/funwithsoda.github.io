@@ -8,5 +8,7 @@ tags: [sample post]
 categories: [data catalog]
 ---
 
-Socrata provides an API for getting a list of Socrata datasets.
+Socrata provides a API for getting a list of Socrata datasets. Unfortunately for me the data provided is not as comprehensive as I'd like. For example it doesn't list the number of rows, location of data owner, creation date, and number of updates.
+
+
 
