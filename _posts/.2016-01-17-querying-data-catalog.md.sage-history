@@ -1,0 +1,59 @@
+"---\nlayout: post\ntitle: Create a detailed Socrata datasets catalog\ndescription: \"Instructions for creating a catalog of Socrata datasets with a lot of detail.\"\nmodified: 2016-01-17\nauthor: Tim Clemans\ntags: [sample post]\ncategories: [data catalog]\n---\n\nSocrata provides an API for getting a list of Socrata datasets.\n\n"
+{"patch":[[[[0,"atasets."],[1," "],[0,"\n\n"]],308,308,10,11]],"time":1453067322024}
+{"patch":[[[[0,"g a list"],[1,"in"],[0," of Socr"]],287,287,16,18]],"time":1453067286421}
+{"patch":[[[[0,"a listin"],[1,"g"],[0," of Socr"]],289,289,16,17]],"time":1453067284421}
+{"patch":[[[[0,"rovides "],[1,"provides"],[0,"an API f"]],262,262,16,24]],"time":1453067280510}
+{"patch":[[[[0,"provides"],[1," "],[0,"an API f"]],270,270,16,17]],"time":1453067278511}
+{"patch":[[[[0,"sets. \n\n"],[1,"# Heading 1\n\n## Heading 2\n\n### Heading 3\n\n#### Heading 4\n\n##### Heading 5\n\n###### Heading 6\n\n### Body text\n\nLorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.\n\n![Smithsonian Image]({{ site.url }}/images/3953273590_704e3899d5_m.jpg)\n{: .image-right}\n\n*This is emphasized*. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H<sub>2</sub>O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times <cite>(That’s a citation)</cite>. <u>Underline</u>. Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.\n\nHTML and <abbr title=\"cascading stylesheets\">CSS<abbr> are our tools. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.\n\n### Blockquotes\n\n> Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.\n\n## List Types\n\n### Ordered Lists\n\n1. Item one\n   1. sub item one\n   2. sub item two\n   3. sub item three\n2. Item two\n\n### Unordered Lists\n\n* Item one\n* Item two\n* Item three\n\n## Tables\n\n| Header1 | Header2 | Header3 |\n|:--------|:-------:|--------:|\n| cell1   | cell2   | cell3   |\n| cell4   | cell5   | cell6   |\n|----\n| cell1   | cell2   | cell3   |\n| cell4   | cell5   | cell6   |\n|=====\n| Foot1   | Foot2   | Foot3\n{: rules=\"groups\"}\n\n## Code Snippets\n\nSyntax highlighting via Pygments\n\n{% highlight css %}\n#container {\n  float: left;\n  margin: 0 -240px 0 0;\n  width: 100%;\n}\n{% endhighlight %}\n\nNon Pygments code example\n\n    <div id=\"awesome\">\n        <p>This is great isn't it?</p>\n    </div>\n\n## Buttons\n\nMake any link standout more when applying the `.btn` class.\n\n{% highlight html %}\n<a href=\"#\" class=\"btn btn-success\">Success Button</a>\n{% endhighlight %}\n\n<div markdown=\"0\"><a href=\"#\" class=\"btn\">Primary Button</a></div>\n<div markdown=\"0\"><a href=\"#\" class=\"btn btn-success\">Success Button</a></div>\n<div markdown=\"0\"><a href=\"#\" class=\"btn btn-warning\">Warning Button</a></div>\n<div markdown=\"0\"><a href=\"#\" class=\"btn btn-danger\">Danger Button</a></div>\n<div markdown=\"0\"><a href=\"#\" class=\"btn btn-info\">Info Button</a></div>\n"]],323,323,8,2451]],"time":1453067275572}
+{"patch":[[[[0," dat"],[-1,"asets. "],[0,"\n\n# "]],318,318,15,8]],"time":1453067153390}
+{"patch":[[[[0,"ing of S"],[-1,"ocrata dat"],[0,"\n\n# Head"]],304,304,26,16]],"time":1453067151391}
+{"patch":[[[[0," listing"],[-1," of S"],[0,"\n\n# Head"]],299,299,21,16]],"time":1453067149376}
+{"patch":[[[[0," get"],[-1,"ting a listing"],[0,"\n\n# "]],289,289,22,8]],"time":1453067147386}
+{"patch":[[[[0,"API for "],[-1,"get"],[0,"\n\n# Head"]],282,282,19,16]],"time":1453067145416}
+{"patch":[[[[0,"s an API"],[-1," for "],[0,"\n\n# Head"]],277,277,21,16]],"time":1453067143375}
+{"patch":[[[[0,"des "],[-1,"an API"],[0,"\n\n# "]],275,275,14,8]],"time":1453067141376}
+{"patch":[[[[0,"des prov"],[-1,"ides "],[0,"\n\n# Head"]],266,266,21,16]],"time":1453067139375}
+{"patch":[[[[0,"provides"],[-1," prov"],[0,"\n\n# Head"]],261,261,21,16]],"time":1453067137377}
+{"patch":[[[[0,"m Cl"],[-1,"emans"],[0,"\ntag"]],191,191,13,8]],"time":1453067135373}
+{"patch":[[[[0,"thor"],[-1,": Tim Cl"],[0,"\ntag"]],183,183,16,8]],"time":1453067133375}
+{"patch":[[[[0,"-17\n"],[-1,"author"],[0,"\ntag"]],177,177,14,8]],"time":1453067131373}
+{"patch":[[[[0,"6-01-17\n"],[-1,"\n"],[0,"tags: [s"]],173,173,17,16]],"time":1453067129374}
+{"patch":[[[[0," provide"],[-1,"s\n"],[0,"\n# Headi"]],240,240,18,16]],"time":1453067124734}
+{"patch":[[[[0,"ata "],[-1,"provide"],[0,"\n# H"]],237,237,15,8]],"time":1453067122732}
+{"patch":[[[[0,"]\n---\n\nS"],[-1,"ocrata "],[0,"\n# Headi"]],226,226,23,16]],"time":1453067120732}
+{"patch":[[[[0,"g]\n---\n\n"],[-1,"S"],[1,"Below is just about everything you'll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.\n"],[0,"\n# Headi"]],225,225,17,157]],"time":1453067118733}
+{"patch":[[[[0," [da"],[-1,"ta catalog"],[0,"]\n--"]],212,212,18,8]],"time":1453067080953}
+{"patch":[[[[0,"ories: ["],[-1,"da"],[1,"intr"],[0,"]\n---\n\nB"]],206,206,18,20]],"time":1453067078947}
+{"patch":[[[[0,"s: [intr"],[1,"o"],[0,"]\n---\n\nB"]],210,210,16,17]],"time":1453067076940}
+{"patch":[[[[0,"016-01-1"],[-1,"7"],[0,"\ntags: ["]],171,171,17,16]],"time":1453067074940}
+{"patch":[[[[0,"2016-01-"],[-1,"1"],[1,"24"],[0,"\ntags: ["]],170,170,17,18]],"time":1453067072940}
+{"patch":[[[[0,"d: 2016-"],[-1,"0"],[0,"1"],[1,"2"],[0,"-24\ntags"]],167,167,18,18]],"time":1453067069765}
+{"patch":[[[[0,"ied: 201"],[-1,"6"],[1,"4"],[0,"-12-24\nt"]],165,165,17,17]],"time":1453067067764}
+{"patch":[[[[0,"t of det"],[-1,"ail"],[0,".\"\nmodif"]],146,146,19,16]],"time":1453067063764}
+{"patch":[[[[0,"h a "],[-1,"lot of det"],[0,".\"\nm"]],140,140,18,8]],"time":1453067061764}
+{"patch":[[[[0,"ts with "],[-1,"a "],[0,".\"\nmodif"]],134,134,18,16]],"time":1453067059803}
+{"patch":[[[[0,"ets "],[-1,"with "],[0,".\"\nm"]],133,133,13,8]],"time":1453067057757}
+{"patch":[[[[0,"datasets"],[-1," "],[0,".\"\nmodif"]],128,128,17,16]],"time":1453067055760}
+{"patch":[[[[0,"datasets"],[-1,"."],[0,"\"\nmodifi"]],128,128,17,16]],"time":1453067042577}
+{"patch":[[[[0,"crata da"],[-1,"tasets"],[0,"\"\nmodifi"]],122,122,22,16]],"time":1453067040537}
+{"patch":[[[[0,"f Socrat"],[-1,"a da"],[0,"\"\nmodifi"]],118,118,20,16]],"time":1453067038536}
+{"patch":[[[[0,"log "],[-1,"of Socrat"],[0,"\"\nmo"]],113,113,17,8]],"time":1453067036537}
+{"patch":[[[[0,"g a "],[-1,"catalog "],[0,"\"\nmo"]],105,105,16,8]],"time":1453067034537}
+{"patch":[[[[0,"reat"],[-1,"ing a "],[0,"\"\nmo"]],99,99,14,8]],"time":1453067032541}
+{"patch":[[[[0,"ions"],[-1," for creat"],[0,"\"\nmo"]],89,89,18,8]],"time":1453067030536}
+{"patch":[[[[0,": \"I"],[-1,"nstructions"],[0,"\"\nmo"]],78,78,19,8]],"time":1453067028536}
+{"patch":[[[[0,"ption: \""],[-1,"I"],[0,"\"\nmodifi"]],73,73,17,16]],"time":1453067026575}
+{"patch":[[[[0,"ption: \""],[1,"d more."],[0,"\"\nmodifi"]],73,73,16,23]],"time":1453067013818}
+{"patch":[[[[0,"ption: \""],[1,"les, code blocks, an"],[0,"d more.\""]],73,73,16,36]],"time":1453067011818}
+{"patch":[[[[0,"ption: \""],[1," headings, paragraphs, blockquotes, tab"],[0,"les, cod"]],73,73,16,55]],"time":1453067009807}
+{"patch":[[[[0,"ption: \""],[1,"need to style in the theme:"],[0," heading"]],73,73,16,43]],"time":1453067007807}
+{"patch":[[[[0,"ption: \""],[1,"Just about everything you'll "],[0,"need to "]],73,73,16,45]],"time":1453067005807}
+{"patch":[[[[0,"reate a "],[1,"super"],[0,"detailed"]],25,25,16,21]],"time":1453066988051}
+{"patch":[[[[0," a super"],[1," "],[0,"detailed"]],30,30,16,17]],"time":1453066986055}
+{"patch":[[[[0,"e: Creat"],[-1,"e"],[1,"in"],[0," a super"]],21,21,17,18]],"time":1453066940025}
+{"patch":[[[[0," Creatin"],[1,"g"],[0," a super"]],23,23,16,17]],"time":1453066938025}
+{"patch":[[[[0," det"],[-1,"ailed"],[0," Soc"]],40,40,13,8]],"time":1453066922232}
+{"patch":[[[[0,"super de"],[-1,"t"],[0," Socrata"]],35,35,17,16]],"time":1453066920228}
+{"patch":[[[[0,"supe"],[-1,"r de"],[0," Soc"]],35,35,12,8]],"time":1453066918229}
+{"patch":[[[[0,"g a "],[-1,"supe "],[0,"Socr"]],31,31,13,8]],"time":1453066916229}
+{"patch":[[[[0,"ating a "],[1,"very detailed "],[0,"Socrata "]],27,27,16,30]],"time":1453066914256}
