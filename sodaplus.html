@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  
+  
+
+  
+  
+  
+
+  
+
+  <script type="text/javascript" src="/js/lib/dummy.js"></script>
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+
+  
+    
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    
+  
+
+  <style type="text/css">
+    ul ul {
+  padding-left:20px;
+}
+#right_sidebar {
+  float:right;
+  width:300px;
+}
+td, th {
+  border:1px solid #000;
+  padding:3px;
+  vertical-align:top;
+  text-align:left;
+}
+table {
+  border-collapse:collapse;
+}
+  </style>
+
+  <title></title>
+
+  
+    
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+window.onload=function(){
+function getFields(apiID) {
+  $.get('https://data.seattle.gov/resource/'+apiID+'.json?$limit=1', function(data) {
+    var fields = Object.keys(data[0]).concat([':id', ':created_at', ':updated_at']);
+    var fields_checkboxes = '';
+    var url = 'https://data.seattle.gov/resource/'+apiID+'.json';
+    window.base_url = url;
+    $('#url').val(url);
+    $.each(fields, function(i, v) {
+      fields_checkboxes += '<li><input type="checkbox" value="'+v+'" /> '+v+'</li>';
+    });
+    $('#fields').html(fields_checkboxes);
+    var simple_filtering_fields = '';
+    $.each(fields, function(i, v) {
+      simple_filtering_fields += '<li><strong>'+v+'</strong>: <select id="simple_filtering_field__'+v+'"></select></li>';
+    });
+    $('#simple_filtering_fields').html(simple_filtering_fields);
+    group_fields_html = ''
+    $.each(fields, function(i, v) {
+      group_fields_html += '<li><input type="checkbox" value="'+v+'" /> '+v+'</li>';
+    });
+    $('#group_fields').html(group_fields_html);
+  });
+}
+function loadTable(data) {
+  fields = Object.keys(data[0]);
+  table_html = '<table>';
+  table_html += '<tr>';
+  $.each(fields, function(i, v) {
+    table_html += '<th>'+v+'</th>';
+  })
+  table_html += '</tr>';
+  $.each(data, function(i, row) {
+    table_html += '<tr>';
+    $.each(fields, function(j, col) {
+      table_html += '<td>';
+      table_html += '<a href="">'+row[col]+'</a>'
+      table_html += '</td>';
+    })
+    table_html += '</tr>';
+  })
+  table_html += '</table>';
+  $('#data').html(table_html);
+  
+  //$('#data').text(JSON.stringify(data));
+}
+function run() {
+  urlElements = {}
+  var selected = [];
+    $('input[type=checkbox]').each(function(v) {
+      if ($(this).is(':checked')) {
+        selected.push($(this).val());
+      }
+      
+    })
+    if (selected.length > 0) {
+      urlElements['$select'] = selected.join();
+    }
+    if ($('#q').val()) {
+      urlElements['$q'] = $('#q').val();
+    }
+    joinedUrlElements = []
+    $.each(Object.keys(urlElements), function(i, v) {
+      joinedUrlElements.push(v + '=' + urlElements[v])
+    });
+    url = window.base_url + '?' + joinedUrlElements.join('&');
+      $('#url').val(url);
+      $('#url').trigger('input');
+}
+$(function() {
+  $('#go').click(function(e) {
+    getFields($('#api_id').val());
+  });
+  $('body').on('change', 'input[type=checkbox]', function(e) {
+    run()
+  });
+  $('#go').trigger('click');
+  $('#url').each(function() {
+  
+   var elem = $(this);
+
+   // Save current value of element
+   elem.data('oldVal', elem.val());
+
+   // Look for changes in the value
+   elem.bind("propertychange change click keyup input paste", function(event){
+      // If value has changed...
+      if (elem.data('oldVal') != elem.val()) {
+       // Updated stored value
+       elem.data('oldVal', elem.val());
+
+       // Do action
+       //alert('change');
+       window.location.hash = $('#url').val();
+    urlToGet = $('#url').val();
+    if (urlToGet.endsWith('json')) {
+      urlToGet += '?'
+    } else {
+      urlToGet += '&'
+    
+    }
+    $.get(urlToGet+'$limit=100', function(data) {
+      loadTable(data);
+    })
+     }
+   });
+ });
+    
+  setTimeout(function() {$('#url').trigger('input');},1000);
+  $('#q_go').click(function() {
+    run();
+  });
+})
+}//]]> 
+
+</script>
+
+  
+</head>
+
+<body>
+  <strong>API ID:</strong> <input type="text" id="api_id" value="9qnw-vqnm" /> <input type="button" id="go" value="Go"/><br/><strong>Url:</strong> <input style="width:100%" type="text" id="url" />
+<div id="right_sidebar">
+<ul>
+<li><strong>Query:</strong> <input id="q" /><input type="button" id="q_go" value="Go" /><input type="button" value="Clear" id="q_clear" /></li>
+<li><strong>Simple filtering:</strong> <ul id="simple_filtering_fields">
+ 
+</ul></li>
+<li>
+<strong>Select:</strong><br/>
+<ul id="fields"> 
+
+</ul></li>
+<li><strong>Where:</strong></li>
+<li><strong>Group:</strong>
+<ul id="group_fields"> 
+
+</ul>
+</li>
+<li><strong>Offset:</strong> <input type="text" id="offset" /></li>
+<li><strong>Limit:</strong> <input type="text" id="limit" /></li>
+<li><strong>Order:</strong></li>
+</ul>
+</div>
+<div id="data">
+
+</div>
+  
+</body>
+
+</html>
+
