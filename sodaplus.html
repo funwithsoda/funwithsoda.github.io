@@ -61,7 +61,29 @@ table {
 
 
 <script type='text/javascript'>//<![CDATA[
-window.onload=function(){
+function getJsonFromUrl() {
+  var url = window.location.hash;
+  console.log(url);
+  if (url.indexOf('?') > -1) {
+    query = url.substring(url.indexOf('?')+1);
+    var result = {};
+    query.split("&").forEach(function(part) {
+      var item = part.split("=");
+      result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return result;
+  } else {
+    return {}
+  }
+}
+function updateQueryGUI() {
+  urlJson = getJsonFromUrl();
+  if (Object.keys(urlJson).indexOf('$q') > -1) {
+    console.log('is in');
+    $('#q').val(urlJson['$q']);
+  }
+  console.log(JSON.stringify(urlJson));
+}
 function getFields(apiID) {
   $.get('https://data.seattle.gov/resource/'+apiID+'.json?$limit=1', function(data) {
     var fields = Object.keys(data[0]).concat([':id', ':created_at', ':updated_at']);
@@ -97,7 +119,9 @@ function loadTable(data) {
     table_html += '<tr>';
     $.each(fields, function(j, col) {
       table_html += '<td>';
-      table_html += '<a href="">'+row[col]+'</a>'
+      hashUrlForFiltering = window.location.hash.substring(0,window.location.hash.indexOf('?'));
+      hashUrlForFiltering = hashUrlForFiltering + '?' + col + '=' + row[col]
+      table_html += '<a href="'+hashUrlForFiltering+'" class="filter_url">'+row[col]+'</a>'
       table_html += '</td>';
     })
     table_html += '</tr>';
@@ -106,6 +130,22 @@ function loadTable(data) {
   $('#data').html(table_html);
   
   //$('#data').text(JSON.stringify(data));
+}
+function getData() {
+if ($('#url').val()) {
+urlToGet = $('#url').val();
+} else {
+urlToGet = window.location.hash.substring(1);
+}
+    if (urlToGet.endsWith('json')) {
+      urlToGet += '?'
+    } else {
+      urlToGet += '&'
+    
+    }
+    $.get(urlToGet+'$limit=100', function(data) {
+      loadTable(data);
+    })
 }
 function run() {
   urlElements = {}
@@ -155,26 +195,19 @@ $(function() {
        // Do action
        //alert('change');
        window.location.hash = $('#url').val();
-    urlToGet = $('#url').val();
-    if (urlToGet.endsWith('json')) {
-      urlToGet += '?'
-    } else {
-      urlToGet += '&'
-    
-    }
-    $.get(urlToGet+'$limit=100', function(data) {
-      loadTable(data);
-    })
+       getData()
      }
    });
  });
     
-  setTimeout(function() {$('#url').trigger('input');},1000);
+  //setTimeout(function() {$('#url').trigger('input');},1000);
   $('#q_go').click(function() {
     run();
   });
+  getData();
+  updateQueryGUI();
 })
-}//]]> 
+//]]> 
 
 </script>
 
