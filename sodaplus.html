@@ -15,25 +15,20 @@
 
   
 
-  <script type="text/javascript" src="/js/lib/dummy.js"></script>
-
-  
-
-  
-
-  
-
-  
-    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
-  
-
   
     
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   
 
   <style type="text/css">
+  table {
+  overflow:auto;
+  }
+  body {
+  font:.9em sans-serif;
+  margin:0;
+  }
     ul ul {
   padding-left:20px;
 }
@@ -50,6 +45,60 @@ td, th {
 table {
   border-collapse:collapse;
 }
+#header {
+background:#000;
+color:#FFF;
+padding:10px;
+}
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;
+  _width: 160px;
+  padding: 4px 0;
+  margin: 2px 0 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+
+  .ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+
+    &.ui-state-hover, &.ui-state-active {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: #0088cc;
+      border-radius: 0px;
+      -webkit-border-radius: 0px;
+      -moz-border-radius: 0px;
+      background-image: none;
+    }
+  }
+}
   </style>
 
   <title></title>
@@ -60,6 +109,38 @@ table {
 
 
 
+
+  
+</head>
+
+<body>
+<div id="header">SODA Plus <strong>Domain:</strong> <input type="text" id="domains" /> <strong>Dataset:</strong> <input type="text" id="dataset" /></div>
+  <strong>Url:</strong> <input style="width:80%" type="text" id="url" />
+<div id="right_sidebar">
+<ul>
+<li><strong>Query:</strong> <input id="q" /><input type="button" id="q_go" value="Go" /><input type="button" value="Clear" id="q_clear" /></li>
+<li><strong>Simple filtering:</strong> <ul id="simple_filtering_fields">
+ 
+</ul></li>
+<li>
+<strong>Select:</strong><br/>
+<ul id="fields"> 
+
+</ul></li>
+<li><strong>Where:</strong></li>
+<li><strong>Group:</strong>
+<ul id="group_fields"> 
+
+</ul>
+</li>
+<li><strong>Offset:</strong> <input type="text" id="offset" /></li>
+<li><strong>Limit:</strong> <input type="text" id="limit" /></li>
+<li><strong>Order:</strong></li>
+</ul>
+</div>
+<div id="data">
+
+</div>
 <script type='text/javascript'>//<![CDATA[
 function getJsonFromUrl() {
   var url = window.location.hash;
@@ -84,11 +165,11 @@ function updateQueryGUI() {
   }
   console.log(JSON.stringify(urlJson));
 }
-function getFields(apiID) {
-  $.get('https://data.seattle.gov/resource/'+apiID+'.json?$limit=1', function(data) {
+function getFields(domain, apiID) {
+  $.get('https://'+domain+'/resource/'+apiID+'.json?$limit=1', function(data) {
     var fields = Object.keys(data[0]).concat([':id', ':created_at', ':updated_at']);
     var fields_checkboxes = '';
-    var url = 'https://data.seattle.gov/resource/'+apiID+'.json';
+    var url = 'https://'+domain+'/resource/'+apiID+'.json';
     window.base_url = url;
     $('#url').val(url);
     $.each(fields, function(i, v) {
@@ -121,7 +202,13 @@ function loadTable(data) {
       table_html += '<td>';
       hashUrlForFiltering = window.location.hash.substring(0,window.location.hash.indexOf('?'));
       hashUrlForFiltering = hashUrlForFiltering + '?' + col + '=' + row[col]
-      table_html += '<a href="'+hashUrlForFiltering+'" class="filter_url">'+row[col]+'</a>'
+      if (String(row[col]).indexOf('http') > -1) {
+        table_html += '<a href="'+row[col]+'" class="filter_url">'+row[col]+'</a>'
+      } else if (String(row[col]).length < 50) {
+        table_html += '<a href="'+hashUrlForFiltering+'" class="filter_url">'+row[col]+'</a>'
+      } else {
+        table_html += row[col]
+      }
       table_html += '</td>';
     })
     table_html += '</tr>';
@@ -132,20 +219,21 @@ function loadTable(data) {
   //$('#data').text(JSON.stringify(data));
 }
 function getData() {
-if ($('#url').val()) {
-urlToGet = $('#url').val();
-} else {
-urlToGet = window.location.hash.substring(1);
-}
-    if (urlToGet.endsWith('json')) {
-      urlToGet += '?'
-    } else {
-      urlToGet += '&'
-    
-    }
-    $.get(urlToGet+'$limit=100', function(data) {
-      loadTable(data);
-    })
+  if (window.location.hash.substring(1)) {
+  urlToGet = window.location.hash.substring(1);
+  } else {
+  urlToGet = $('#url').val();
+  }
+  if (urlToGet.endsWith('json')) {
+    urlToGet += '?'
+  } else {
+    urlToGet += '&'
+  
+  }
+  console.log('going to url '+urlToGet);
+  $.get(urlToGet+'$limit=100', function(data) {
+    loadTable(data);
+  })
 }
 function run() {
   urlElements = {}
@@ -204,43 +292,68 @@ $(function() {
   $('#q_go').click(function() {
     run();
   });
-  getData();
   updateQueryGUI();
+  domain = window.location.hash.substring(9,window.location.hash.substring(9).indexOf('/')+9);
+  $('#domains').val(domain);
+  console.log('domain parse '+domain+(window.location.hash.substring(9).indexOf('/')+9)+window.location.hash.substring(9))
+  
+  datasetID = window.location.hash.substring(window.location.hash.indexOf('/resource/')+10,window.location.hash.indexOf('.json'));
+  window.datasetID = datasetID;
+  console.log('dataset ID '+datasetID);
+  setTimeout(function() {getFields(domain, datasetID);}, 500); 
+  setTimeout(function() {getData();}, 1000);
+  $('body').on('click', '.filter_url', function(e) {
+    setTimeout(function(){getData();},500);
+  })
+  var domains = [];
+  $.get('http://api.us.socrata.com/api/catalog/v1/domains', function(data) {
+    data = data["results"];
+    $.each(data, function(i, v) {
+      domains.push(v['domain']);
+    });
+    $( "#domains" ).autocomplete({
+      source: domains
+    });
+  });
+  var datasets = [];
+  $.get('http://api.us.socrata.com/api/catalog/v1?type=datasets&limit=60000', function(data) {
+    data = data["results"];
+    window.datasetIDToDomain = {};
+    
+    window.allDatasets = [];
+    $.each(data, function(i, v) {
+      datasets.push(v["resource"]["nbe_fxf"]+' | '+v["resource"]["name"]);
+      datasetIDToDomain[v["resource"]["nbe_fxf"]] = v["metadata"]["domain"];
+    });
+    $( "#dataset" ).autocomplete({
+      source: datasets,
+      select: function(e, ui) {  
+
+        $('#dataset').trigger('change');
+      }
+    });
+  });
+  $('body').on('input propertychange paste autocompleteselect autocompletechange change', '#dataset', function(e) {
+    console.log($(this).val());
+    if ($(this).val().indexOf(' | ') > -1) {
+      console.log('yes');
+      var datasetID = $(this).val().substring(0, $(this).val().indexOf(' | '));
+      console.log(datasetID+'*');
+      var domain = window.datasetIDToDomain[datasetID];
+      console.log(domain);
+      $('#domains').val(domain);
+      var newUrl = 'https://'+domain+'/resource/'+datasetID+'.json';
+      $('#url').val(newUrl);
+      $('#url').trigger('input');
+      setTimeout(function() {getFields(domain, datasetID);}, 500);
+      
+    }
+  });
 })
 //]]> 
 
 </script>
 
-  
-</head>
-
-<body>
-  <strong>API ID:</strong> <input type="text" id="api_id" value="9qnw-vqnm" /> <input type="button" id="go" value="Go"/><br/><strong>Url:</strong> <input style="width:100%" type="text" id="url" />
-<div id="right_sidebar">
-<ul>
-<li><strong>Query:</strong> <input id="q" /><input type="button" id="q_go" value="Go" /><input type="button" value="Clear" id="q_clear" /></li>
-<li><strong>Simple filtering:</strong> <ul id="simple_filtering_fields">
- 
-</ul></li>
-<li>
-<strong>Select:</strong><br/>
-<ul id="fields"> 
-
-</ul></li>
-<li><strong>Where:</strong></li>
-<li><strong>Group:</strong>
-<ul id="group_fields"> 
-
-</ul>
-</li>
-<li><strong>Offset:</strong> <input type="text" id="offset" /></li>
-<li><strong>Limit:</strong> <input type="text" id="limit" /></li>
-<li><strong>Order:</strong></li>
-</ul>
-</div>
-<div id="data">
-
-</div>
   
 </body>
 
