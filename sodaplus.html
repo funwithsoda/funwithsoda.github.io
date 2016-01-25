@@ -120,7 +120,6 @@ overflow:auto;
 
 <body>
 <div id="header">SODA Plus <strong>Domain:</strong> <input type="text" id="domains" /> <strong>Dataset:</strong> <input type="text" id="dataset" /></div>
-<p><strong>Attention:</strong> The primary goal is to create a powerful GUI for creating and modifying Socrata API urls. In attention this site will have advanced features like subscribing to new results to queries.</p>
   <strong>Url:</strong> <input style="width:80%" type="text" id="url" /> <span id="number_of_rows"></span> rows
 <div id="right_sidebar">
 
@@ -191,18 +190,18 @@ function getFields(domain, apiID) {
     window.base_url = url;
     $('#url').val(url);
     $.each(fields, function(i, v) {
-      fields_checkboxes += '<li><input type="checkbox" value="'+v+'" /> '+v+'</li>';
+      fields_checkboxes += '<li><input type="checkbox" value="'+v+'" class="select" /> '+v+'</li>';
     });
     $('#fields').html(fields_checkboxes);
     var simple_filtering_fields = '';
     $.each(fields, function(i, v) {
-      simple_filtering_fields += '<li><strong>'+v+'</strong>: <select id="simple_filtering_field__'+v+'"></select></li>';
+      simple_filtering_fields += '<li><strong>'+v+'</strong>: <select id="simple_filtering_field__'+v+'" data-field="'+v+'"></select></li>';
       getItemsForField(v);
     });
     $('#simple_filtering_fields').html(simple_filtering_fields);
     group_fields_html = ''
     $.each(fields, function(i, v) {
-      group_fields_html += '<li><input type="checkbox" value="'+v+'" /> '+v+'</li>';
+      group_fields_html += '<li><input type="checkbox" value="'+v+'" class="group" /> '+v+'</li>';
     });
     $('#group_fields').html(group_fields_html);
   });
@@ -224,7 +223,7 @@ function loadTable(data) {
       if (col == 'address') {
         var ending = '';
         if (window.location.hash.indexOf('seattle') > -1) {
-          ending = ', seattle, wa';
+          ending = ' seattle, wa';
         } else if (fields.indexOf('location_city') > -1) {
           ending = ', '+row['location_city']+', '+row['location_state'];
         }
@@ -262,7 +261,7 @@ function loadTable(data) {
 }
 function getData() {
   
-  if (window.location.hash.indexOf('$order=:created_at%20DESC') == -1) {
+  if (window.location.hash.indexOf('$order=') == -1) {
     var newpart = '';
     
     if (window.location.hash.indexOf('?') == -1) {
@@ -296,12 +295,30 @@ function getData() {
 function run() {
   urlElements = {}
   var selected = [];
-    $('input[type=checkbox]').each(function(v) {
+  var grouped = [];
+  var simpleFilters = {};
+    $('input[type=checkbox].select').each(function(v) {
       if ($(this).is(':checked')) {
         selected.push($(this).val());
       }
       
-    })
+    });
+    $('#simple_filtering_fields select').each(function(v) {
+      if ($(this).find('option:selected').text()) {
+        simpleFilters[$(this).attr('data-field')] = $(this).find('option:selected').text();
+      }
+    });
+    $('input[type=checkbox].group').each(function(v) {
+      if ($(this).is(':checked')) {
+        grouped.push($(this).val());
+      }
+      
+    });
+    if (Object.keys(simpleFilters).length > 0) {
+      $.each(Object.keys(simpleFilters), function(i, v) {
+        urlElements[v] = simpleFilters[v];
+      });
+    }
     if (selected.length > 0) {
       urlElements['$select'] = selected.join();
     }
@@ -313,16 +330,22 @@ function run() {
       joinedUrlElements.push(v + '=' + urlElements[v])
     });
     url = window.base_url + '?' + joinedUrlElements.join('&');
-      $('#url').val(url);
-      $('#url').trigger('input');
+    $('#url').val(url);
+    $('#url').trigger('input');
 }
 $(function() {
   setTimeout(function() {$('#data').doubleScroll();},2000);
   $('#go').click(function(e) {
     getFields($('#api_id').val());
   });
-  $('body').on('change', 'input[type=checkbox]', function(e) {
+  $('body').on('change', 'input[type=checkbox], select', function(e) {
     run()
+  });
+  $('#right_sidebar input').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+        run()
+    }
   });
   $('#go').trigger('click');
   $('#url').each(function() {
@@ -389,26 +412,12 @@ $(function() {
     $( "#dataset" ).autocomplete({
       source: datasets,
       select: function(e, ui) {  
-
-        $('#dataset').trigger('change');
-        console.log($(this).val());
-        if ($(this).val().indexOf(' | ') > -1) {
-          console.log('yes');
-          var datasetID = $(this).val().substring(0, $(this).val().indexOf(' | '));
-          console.log(datasetID+'*');
-          var domain = window.datasetIDToDomain[datasetID];
-          console.log(domain);
-          $('#domains').val(domain);
-          var newUrl = 'https://'+domain+'/resource/'+datasetID+'.json';
-          $('#url').val(newUrl);
-          $('#url').trigger('input');
-          setTimeout(function() {getFields(domain, datasetID);}, 500);
-          
-        }
+        setTimeout(function(){$('#dataset').trigger('change');},1000);
+        
       }
     });
   });
-  $('body').on('input propertychange paste autocompleteselect autocompletechange change', '#dataset', function(e) {
+  $('body').on('input propertychange paste autocompleteselect autocompletechange change autocompleteselect', '#dataset', function(e) {
     console.log($(this).val());
     if ($(this).val().indexOf(' | ') > -1) {
       console.log('yes');
