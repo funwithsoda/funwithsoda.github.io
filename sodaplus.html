@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript"> if (!window.console) console = {log: function() {}}; </script>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
@@ -121,6 +122,7 @@ overflow:auto;
 <body>
 <div id="header">SODA Plus <strong>Domain:</strong> <input type="text" id="domains" /> <strong>Dataset:</strong> <input type="text" id="dataset" /></div>
   <strong>Url:</strong> <input style="width:80%" type="text" id="url" /> <span id="number_of_rows"></span> rows
+  <p><strong>Attention:</strong> This is a project in the stages to provide a GUI for generating Socrata API urls, doing advanced display of data, and allowing subscription to new results to queries.</p>
 <div id="right_sidebar">
 
 <ul>
@@ -184,7 +186,7 @@ function getItemsForField(field) {
 }
 function getFields(domain, apiID) {
   $.get('https://'+domain+'/resource/'+apiID+'.json?$limit=1', function(data) {
-    var fields = Object.keys(data[0]).concat([':id', ':created_at', ':updated_at']);
+    var fields = Object.keys(data[0]).concat([':id', ':created_at', ':updated_at', 'count(*)']);
     var fields_checkboxes = '';
     var url = 'https://'+domain+'/resource/'+apiID+'.json';
     window.base_url = url;
@@ -261,7 +263,7 @@ function loadTable(data) {
 }
 function getData() {
   
-  if (window.location.hash.indexOf('$order=') == -1) {
+  if (window.location.hash.indexOf('$order=') == -1 && window.location.hash.indexOf('$group=') == -1) {
     var newpart = '';
     
     if (window.location.hash.indexOf('?') == -1) {
@@ -281,14 +283,18 @@ function getData() {
   } else {
   urlToGet = $('#url').val();
   }
-  if (urlToGet.endsWith('json')) {
-    urlToGet += '?'
-  } else {
-    urlToGet += '&'
-  
+  if (urlToGet.indexOf('$limit=') == -1) {
+    if (urlToGet.endsWith('json')) {
+      urlToGet += '?'
+    } else {
+      urlToGet += '&'
+    
+    }
+    urlToGet += '$limit=100'
   }
   console.log('going to url '+urlToGet);
-  $.get(urlToGet+'$limit=100', function(data) {
+  
+  $.get(urlToGet, function(data) {
     loadTable(data);
   })
 }
@@ -321,6 +327,9 @@ function run() {
     }
     if (selected.length > 0) {
       urlElements['$select'] = selected.join();
+    }
+    if (grouped.length > 0) {
+      urlElements['$group'] = grouped.join();
     }
     if ($('#q').val()) {
       urlElements['$q'] = $('#q').val();
