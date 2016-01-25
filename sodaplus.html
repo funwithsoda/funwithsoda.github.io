@@ -223,7 +223,7 @@ function loadTable(data) {
       if (col == 'address') {
         var ending = '';
         if (window.location.hash.indexOf('seattle') > -1) {
-          ending = ' seattle, wa';
+          ending = ', seattle, wa';
         } else if (fields.indexOf('location_city') > -1) {
           ending = ', '+row['location_city']+', '+row['location_state'];
         }
