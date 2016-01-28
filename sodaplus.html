@@ -122,7 +122,7 @@ overflow:auto;
 <body>
 <div id="header">SODA Plus <strong>Domain:</strong> <input type="text" id="domains" /> <strong>Dataset:</strong> <input type="text" id="dataset" /></div>
   <strong>Url:</strong> <input style="width:80%" type="text" id="url" /> <span id="number_of_rows"></span> rows
-  <p><strong>Attention:</strong> This is a project in the stages to provide a GUI for generating Socrata API urls, doing advanced display of data, and allowing subscription to new results to queries.</p>
+  <p><strong>Attention:</strong> This is a project in the early stages to provide a GUI for generating Socrata API urls, doing advanced display of data, and allowing subscription to new results to queries.</p>
 <div id="right_sidebar">
 
 <ul>
@@ -133,6 +133,7 @@ overflow:auto;
 </ul></li>
 <li>
 <strong>Select:</strong><br/>
+<input type="button" value="Select all (great for quickly unselecting what you don't want)" id="select_all" />
 <ul id="fields"> 
 
 </ul></li>
@@ -172,6 +173,20 @@ function updateQueryGUI() {
     console.log('is in');
     $('#q').val(urlJson['$q']);
   }
+  if (Object.keys(urlJson).indexOf('$select') > -1) {
+    var selects = urlJson['$select'].split(',');
+    $.each(selects, function(i, v) {
+      setTimeout(function(){$('input[value="'+v+'"].select').prop('checked', true);},1000);
+    });
+    
+  }
+  if (Object.keys(urlJson).indexOf('$group') > -1) {
+    var selects = urlJson['$group'].split(',');
+    $.each(selects, function(i, v) {
+      setTimeout(function(){$('input[value="'+v+'"].group').prop('checked', true);},1000);
+    });
+    
+  }
   console.log(JSON.stringify(urlJson));
 }
 function getItemsForField(field) {
@@ -190,7 +205,7 @@ function getFields(domain, apiID) {
     var fields_checkboxes = '';
     var url = 'https://'+domain+'/resource/'+apiID+'.json';
     window.base_url = url;
-    $('#url').val(url);
+    //$('#url').val(url);
     $.each(fields, function(i, v) {
       fields_checkboxes += '<li><input type="checkbox" value="'+v+'" class="select" /> '+v+'</li>';
     });
@@ -209,7 +224,15 @@ function getFields(domain, apiID) {
   });
 }
 function loadTable(data) {
-  fields = Object.keys(data[0]);
+  //fields = Object.keys(data[0]); // sometimes fields are missing in first row
+  fields = []
+  $.each(data, function(i, row) {
+    $.each(Object.keys(row), function(j, key) {
+      if (fields.indexOf(key) == -1) {
+        fields.push(key);
+      }
+    });
+  });
   table_html = '<table>';
   table_html += '<tr>';
   $.each(fields, function(i, v) {
@@ -237,7 +260,7 @@ function loadTable(data) {
       } else {
         hashUrlForFiltering = window.location.hash;
       }
-      hashUrlForFiltering = hashUrlForFiltering + '?' + col + '=' + row[col]
+      hashUrlForFiltering = hashUrlForFiltering + '?' + col + '=' + escape(row[col])
       
       if (String(row[col]).indexOf('http') > -1) {
         table_html += '<a href="'+row[col]+'" class="filter_url">'+row[col]+'</a>';
@@ -295,8 +318,9 @@ function getData() {
   console.log('going to url '+urlToGet);
   
   $.get(urlToGet, function(data) {
-    loadTable(data);
-  })
+      loadTable(data);
+  }).fail(function(data) {console.log('yes');
+      $('#data').text(JSON.stringify(data));});
 }
 function run() {
   urlElements = {}
@@ -445,10 +469,17 @@ $(function() {
   $(window).on('hashchange', function() {
     
     getData();
+    $('#url').val(window.location.hash.substring(1));
   });
+  if (window.location.hash) {
+    $('#url').val(window.location.hash.substring(1));
+  }
   $('body').on('click', '#go_to_main_view', function() {
     window.location.hash = 'https://'+domain+'/resource/'+datasetID+'.json';
     
+  });
+  $('body').on('click', '#select_all', function() {
+    $('.select').not("input[value='count(*)'].select").prop('checked', true)
   });
 })
 //]]> 
