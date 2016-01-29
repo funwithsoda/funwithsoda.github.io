@@ -37,6 +37,9 @@
   float:right;
   width:300px;
 }
+.highlight {
+  background:yellow;
+}
 td, th {
   border:1px solid #000;
   padding:3px;
@@ -272,7 +275,12 @@ function loadTable(data) {
       } else if (String(row[col]).length < 50) {
         table_html += '<a href="'+hashUrlForFiltering+'" class="filter_url">'+row[col]+'</a>';
       } else {
-        table_html += row[col];
+        // highlight search words
+        if ($('#q').val()) {
+          table_html += row[col].split($('#q').val()).join('<span class="highlight">'+$('#q').val()+'</span>');
+        } else {
+          table_html += row[col];
+        }
       }
       table_html += '</td>';
       
