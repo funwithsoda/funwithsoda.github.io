@@ -373,6 +373,7 @@ function run() {
     url = window.base_url + '?' + joinedUrlElements.join('&');
     $('#url').val(url);
     $('#url').trigger('input');
+    window.urlElements = urlElements;
 }
 $(function() {
   setTimeout(function() {$('#data').doubleScroll();},2000);
