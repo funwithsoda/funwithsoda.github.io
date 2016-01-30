@@ -465,12 +465,20 @@ $(function() {
     });
   });
   var datasets = [];
+  
   $.get('http://funwithsoda.github.io/catalog.json', function(data) {
     //data = JSON.parse(data);
     window.datasetIDToDomain = data['datasets_to_domain'];
     
     window.allDatasets = data['datasets'];
-    
+    if (window.location.hash.indexOf('.json') > -1) {
+      window.datasetID = window.location.hash.substring(window.location.hash.indexOf('/resource/')+10, window.location.hash.indexOf('.json'));
+      $.each(window.allDatasets, function(i, v) {
+        if (v.indexOf(window.datasetID) > -1) {
+          $('#dataset').val(window.datasetID);
+        }
+      });
+    }
     $( "#dataset" ).autocomplete({
       source: window.allDatasets,
       select: function(e, ui) {  
