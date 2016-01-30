@@ -306,9 +306,7 @@ function getData() {
     window.location.hash += newpart;
     return
   }
-  $.get('https://'+domain+'/resource/'+datasetID+'.json?$select=count(*)', function(data) {
-      $('#number_of_rows').text(parseInt(data[0]['count']).toLocaleString('en-US'));
-    });
+ 
   if (window.location.hash.substring(1)) {
   urlToGet = window.location.hash.substring(1);
   } else {
@@ -325,6 +323,9 @@ function getData() {
   }
   console.log('going to url '+urlToGet);
   if (urlToGet.indexOf('.json') > -1) {
+    $.get('https://'+domain+'/resource/'+datasetID+'.json?$select=count(*)', function(data) {
+      $('#number_of_rows').text(parseInt(data[0]['count']).toLocaleString('en-US'));
+    });
     $.get(urlToGet, function(data) {
         loadTable(data);
     }).fail(function(data) {console.log('yes');
