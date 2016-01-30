@@ -439,21 +439,7 @@ $(function() {
       source: domains
     });
   });
-  var datasets = [];
-  $.get('http://funwithsoda.github.io/catalog.json', function(data) {
-    //data = JSON.parse(data);
-    window.datasetIDToDomain = data['dataset_to_domain'];
-    
-    window.allDatasets = data['datasets'];
-    
-    $( "#dataset" ).autocomplete({
-      source: window.allDatasets,
-      select: function(e, ui) {  
-        setTimeout(function(){$('#dataset').trigger('change');},1000);
-        
-      }
-    });
-  });
+  
   $('body').on('input propertychange paste autocompleteselect autocompletechange change autocompleteselect', '#dataset', function(e) {
     console.log($(this).val());
     if ($(this).val().indexOf(' | ') > -1) {
