@@ -323,6 +323,7 @@ function getData() {
   }
   console.log('going to url '+urlToGet);
   if (urlToGet.indexOf('.json') > -1) {
+    getFields(domain, datasetID);
     $.get('https://'+domain+'/resource/'+datasetID+'.json?$select=count(*)', function(data) {
       $('#number_of_rows').text(parseInt(data[0]['count']).toLocaleString('en-US'));
     });
@@ -426,7 +427,6 @@ $(function() {
   datasetID = window.location.hash.substring(window.location.hash.indexOf('/resource/')+10,window.location.hash.indexOf('.json'));
   window.datasetID = datasetID;
   console.log('dataset ID '+datasetID);
-  setTimeout(function() {getFields(domain, datasetID);}, 500); 
   setTimeout(function() {getData();}, 1000);
   $('body').on('click', '.filter_url', function(e) {
     setTimeout(function(){getData();},500);
@@ -468,7 +468,7 @@ $(function() {
       var newUrl = 'https://'+domain+'/resource/'+datasetID+'.json';
       $('#url').val(newUrl);
       $('#url').trigger('input');
-      setTimeout(function() {getFields(domain, datasetID);}, 500);
+      //setTimeout(function() {getFields(domain, datasetID);}, 500);
       
     }
   });
