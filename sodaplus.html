@@ -324,11 +324,12 @@ function getData() {
     urlToGet += '$limit=100'
   }
   console.log('going to url '+urlToGet);
-  
-  $.get(urlToGet, function(data) {
-      loadTable(data);
-  }).fail(function(data) {console.log('yes');
-      $('#data').text(JSON.stringify(data));});
+  if (urlToGet.indexOf('.json')) {
+    $.get(urlToGet, function(data) {
+        loadTable(data);
+    }).fail(function(data) {console.log('yes');
+        $('#data').text(JSON.stringify(data));});
+  }
 }
 function run() {
   urlElements = {}
