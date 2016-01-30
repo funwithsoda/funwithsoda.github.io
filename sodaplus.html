@@ -500,6 +500,9 @@ $(function() {
   $('body').on('click', '#select_all', function() {
     $('.select').not("input[value='count(*)'].select").prop('checked', true)
   });
+  $('body').on('click', '#dataset', function() {
+    $('#dataset').val('');
+  })
 })
 //]]> 
 
