@@ -221,12 +221,13 @@ function getFields() {
     var fields = Object.keys(data[0]).concat([':id', ':created_at', ':updated_at', 'count(*)']);
     var fields_checkboxes = '';
     if (window.location.hash.indexOf('?') > -1) {
-    var base_url = window.location.hash.substring(1, window.location.hash.indexOf('?'));
-  } else {
-    var base_url = window.location.hash.substring(1);
-    
-  }
-  window.base_url = base_url;
+      var base_url = window.location.hash.substring(1, window.location.hash.indexOf('?'));
+    } else {
+      var base_url = window.location.hash.substring(1);
+      
+    }
+    console.log('base url '+base_url)
+    window.base_url = base_url;
     url = base_url;
     //$('#url').val(url);
     $.each(fields, function(i, v) {
