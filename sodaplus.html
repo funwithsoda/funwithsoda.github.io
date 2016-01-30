@@ -441,7 +441,7 @@ $(function() {
   });
   var datasets = [];
   $.get('http://funwithsoda.github.io/catalog.json', function(data) {
-    data = JSON.parse(data);
+    //data = JSON.parse(data);
     window.datasetIDToDomain = data['dataset_to_domain'];
     
     window.allDatasets = data['datasets'];
