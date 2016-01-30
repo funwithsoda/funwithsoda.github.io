@@ -440,19 +440,14 @@ $(function() {
     });
   });
   var datasets = [];
-  $.get('http://api.us.socrata.com/api/catalog/v1?type=datasets&limit=60000', function(data) {
-    data = data["results"];
-    window.datasetIDToDomain = {};
+  $.get('http://funwithsoda.github.io/catalog.json', function(data) {
+    data = JSON.parse(data);
+    window.datasetIDToDomain = data['dataset_to_domain'];
     
-    window.allDatasets = [];
-    $.each(data, function(i, v) {
-      if (String(v["resource"]["nbe_fxf"]) != 'null') {
-        datasets.push(v["resource"]["nbe_fxf"]+' | '+v["resource"]["name"]);
-        datasetIDToDomain[v["resource"]["nbe_fxf"]] = v["metadata"]["domain"];
-      }
-    });
+    window.allDatasets = data['datasets'];
+    
     $( "#dataset" ).autocomplete({
-      source: datasets,
+      source: window.allDatasets,
       select: function(e, ui) {  
         setTimeout(function(){$('#dataset').trigger('change');},1000);
         
