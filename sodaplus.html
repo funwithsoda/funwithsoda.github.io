@@ -475,7 +475,7 @@ $(function() {
       window.datasetID = window.location.hash.substring(window.location.hash.indexOf('/resource/')+10, window.location.hash.indexOf('.json'));
       $.each(window.allDatasets, function(i, v) {
         if (v.indexOf(window.datasetID) > -1) {
-          $('#dataset').val(window.datasetID);
+          $('#dataset').val(v);
         }
       });
     }
