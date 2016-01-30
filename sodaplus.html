@@ -342,7 +342,8 @@ function getData() {
     $.get(urlToGet, function(data) {
         loadTable(data);
     }).fail(function(data) {console.log('yes');
-        $('#data').text(JSON.stringify(data));});
+        $('#data').text(JSON.stringify(data));
+    });
   }
 }
 function run() {
