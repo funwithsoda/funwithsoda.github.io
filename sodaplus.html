@@ -215,7 +215,6 @@ function getFields() {
     var base_url = window.location.hash.substring(1, window.location.hash.indexOf('?'));
   } else {
     var base_url = window.location.hash.substring(1);
-    
   }
   $.get(base_url+'?$limit=1', function(data) {
     var fields = Object.keys(data[0]).concat([':id', ':created_at', ':updated_at', 'count(*)']);
@@ -329,9 +328,9 @@ function getData() {
   }
  
   if (window.location.hash.substring(1)) {
-  urlToGet = window.location.hash.substring(1);
+    urlToGet = window.location.hash.substring(1);
   } else {
-  urlToGet = $('#url').val();
+    urlToGet = $('#url').val();
   }
   if (urlToGet.indexOf('$limit=') == -1) {
     if (urlToGet.endsWith('json')) {
@@ -343,6 +342,8 @@ function getData() {
     urlToGet += '$limit=100'
   }
   console.log('going to url '+urlToGet);
+  window.domain = window.location.hash.substring(9,window.location.hash.substring(9).indexOf('/')+9);
+  window.datasetID = window.location.hash.substring(window.location.hash.indexOf('/resource/')+10, window.location.hash.indexOf('.json'));
   if (urlToGet.indexOf('.json') > -1) {
     getFields();
     $.get('https://'+domain+'/resource/'+datasetID+'.json?$select=count(*)', function(data) {
