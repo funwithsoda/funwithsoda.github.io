@@ -324,7 +324,7 @@ function getData() {
     urlToGet += '$limit=100'
   }
   console.log('going to url '+urlToGet);
-  if (urlToGet.indexOf('.json')) {
+  if (urlToGet.indexOf('.json') > -1) {
     $.get(urlToGet, function(data) {
         loadTable(data);
     }).fail(function(data) {console.log('yes');
