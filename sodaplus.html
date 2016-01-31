@@ -209,10 +209,20 @@ function updateQueryGUI() {
 }
 function getItemsForField(field) {
   $.get('https://'+domain+'/resource/'+datasetID+'.json?$select='+field+'&$group='+field+'&$limit=500', function(data) {
-    $('#simple_filtering_field__'+field).append('<option selected></option>');
+    var selectedHtml = '';
+    if (!(window.urlElements.indexOf(field) > -1)) {
+      selectedHtml = ' selected';
+    }
+    $('#simple_filtering_field__'+field).append('<option'+selectedHtml+'></option>');
     $.each(data, function(i, item) {
       if (String(item[field]) != 'undefined') {
-        $('#simple_filtering_field__'+field).append('<option>'+item[field]+'</option>');
+        var selectedHtml = '';
+        if (window.urlElements.indexOf(field) > -1) {
+          if (item[field] == window.urlElements[field]) {
+            selectedHtml = ' selected';
+          }
+        }
+        $('#simple_filtering_field__'+field).append('<option'+selectedHtml+'>'+item[field]+'</option>');
       }
     });
   });
