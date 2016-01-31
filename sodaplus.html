@@ -351,6 +351,7 @@ function getData() {
   console.log('going to url '+urlToGet);
   window.domain = window.location.hash.substring(9,window.location.hash.substring(9).indexOf('/')+9);
   window.datasetID = window.location.hash.substring(window.location.hash.indexOf('/resource/')+10, window.location.hash.indexOf('.json'));
+  document.title = $('#dataset').val() + ' | ' + $('#domains').val();
   if (urlToGet.indexOf('.json') > -1) {
     getFields();
     $.get('https://'+domain+'/resource/'+datasetID+'.json?$select=count(*)', function(data) {
