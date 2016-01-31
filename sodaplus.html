@@ -184,6 +184,7 @@ function getJsonFromUrl() {
   } else {
     return {}
   }
+  
 }
 function updateQueryGUI() {
   urlJson = getJsonFromUrl();
@@ -208,7 +209,7 @@ function updateQueryGUI() {
   console.log(JSON.stringify(urlJson));
 }
 function getItemsForField(field) {
-  run();
+  window.urlElements = getJsonFromUrl()
   $.get('https://'+domain+'/resource/'+datasetID+'.json?$select='+field+'&$group='+field+'&$limit=500', function(data) {
     var selectedHtml = '';
     if (!(window.urlElements.indexOf(field) > -1)) {
@@ -375,6 +376,7 @@ function getData() {
     });
   }
 }
+
 function run() {
   urlElements = {}
   var selected = [];
