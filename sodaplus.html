@@ -209,17 +209,18 @@ function updateQueryGUI() {
   console.log(JSON.stringify(urlJson));
 }
 function getItemsForField(field) {
-  window.urlElements = getJsonFromUrl()
+  window.urlElements = getJsonFromUrl();
+  console.log('THE URL ELEMENTS '+window.urlElements)
   $.get('https://'+domain+'/resource/'+datasetID+'.json?$select='+field+'&$group='+field+'&$limit=500', function(data) {
     var selectedHtml = '';
-    if (!(window.urlElements.indexOf(field) > -1)) {
+    if (!(Object.keys(window.urlElements.indexOf(field)) > -1)) {
       selectedHtml = ' selected';
     }
     $('#simple_filtering_field__'+field).append('<option'+selectedHtml+'></option>');
     $.each(data, function(i, item) {
       if (String(item[field]) != 'undefined') {
         var selectedHtml = '';
-        if (window.urlElements.indexOf(field) > -1) {
+        if (Object.keys(window.urlElements.indexOf(field)) > -1) {
           if (item[field] == window.urlElements[field]) {
             selectedHtml = ' selected';
           }
