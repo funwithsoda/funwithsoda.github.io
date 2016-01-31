@@ -208,6 +208,7 @@ function updateQueryGUI() {
   console.log(JSON.stringify(urlJson));
 }
 function getItemsForField(field) {
+  run();
   $.get('https://'+domain+'/resource/'+datasetID+'.json?$select='+field+'&$group='+field+'&$limit=500', function(data) {
     var selectedHtml = '';
     if (!(window.urlElements.indexOf(field) > -1)) {
